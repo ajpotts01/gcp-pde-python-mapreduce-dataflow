@@ -21,6 +21,9 @@ def execute_pipeline(arguments: list[str], input_path: str, output_path: str):
 
     java_input = f"{input_path}\*.java"
 
+    # Important note:
+    # If running a beam pipeline with a context manager, calling run() or wait_until_finish() is not necessary.
+    # This runs as part of the context manager cleanup.
     with beam.Pipeline(argv=arguments) as pipeline:
         (
             pipeline
@@ -41,5 +44,3 @@ def execute_pipeline(arguments: list[str], input_path: str, output_path: str):
             | "get_top_5" >> Top.Of(n=5, key=lambda kv: kv[1])
             | "write_to_file" >> beam.io.WriteToText(file_path_prefix=output_path)
         )
-
-        pipeline.run().wait_until_finish()
