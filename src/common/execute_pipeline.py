@@ -19,7 +19,7 @@ def execute_pipeline(arguments: list[str], input_path: str, output_path: str):
     print(arguments)
     search_term = "import"
 
-    java_input = f"{input_path}\*.java"
+    #java_input = f"{input_path}\*.java"
 
     # Important note:
     # If running a beam pipeline with a context manager, calling run() or wait_until_finish() is not necessary.
@@ -27,7 +27,7 @@ def execute_pipeline(arguments: list[str], input_path: str, output_path: str):
     with beam.Pipeline(argv=arguments) as pipeline:
         (
             pipeline
-            | "read_java_files" >> beam.io.ReadFromText(file_pattern=java_input)
+            | "read_java_files" >> beam.io.ReadFromText(file_pattern=input_path)
             | "find_imports"
             >> beam.FlatMap(
                 lambda next_line: simple_grep(
