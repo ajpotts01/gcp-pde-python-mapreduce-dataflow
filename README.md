@@ -1,4 +1,4 @@
-# Simple GCP Dataflow Pipeline using Python
+# Mapreduce GCP Dataflow Pipeline using Python
 Mapreduce GCP Dataflow pipeline in Python from the official Google Professional Data Engineer certification material.
 
 These are actually possible to do directly through Qwiklabs/Cloud Skills Boost, but the labs boil down to getting you to just run mostly pre-written code. I'm taking a different approach in reading the lab material, and writing it myself. Maybe adding CI/CD bells and whistles.
